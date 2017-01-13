@@ -40,7 +40,7 @@ ls -al ~/mounts/spark-poc/
 
 <INSTALL JAVA>, spark-ruby needs JAVA_HOME at least
 apt-cache search java | grep jre
-apt-get install default-jre
+apt-get install default-jre default-jdk
 java -version
 java -version
 # openjdk version "1.8.0_111"
@@ -50,19 +50,12 @@ update-alternatives --config java
 # There is only one alternative in link group java (providing /usr/bin/java): /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 nano ~/.profile
 # add:
-# JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+# export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 # export PATH=$PATH:$JAVA_HOME/bin
 source ~/.profile
 
-<CONTINUE FROM HERE>
-rjb fails with JAVA_HOME not found
-
 cd ~/mounts/spark-poc/
-rvm gemset empty spark-poc
 gem install bundler --no-ri --no-rdoc
 bundle install
-
-cd ~/mounts/spark-poc/
-gem install bundler --no-ri --no-rdoc
 
 ```
