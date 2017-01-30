@@ -58,4 +58,29 @@ cd ~/mounts/spark-poc/
 gem install bundler --no-ri --no-rdoc
 bundle install
 
+<!-- # probably not necessary
+apt-get install scala # 2.11.6
+apt-get install wget
+cd ~
+wget http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz
+tar xvf spark-2.1.0-bin-hadoop2.7.tgz
+# add to ~/.bashrc
+  export PATH=$PATH:/root/spark-2.1.0-bin-hadoop2.7/bin
+  export SPARK_HOME=/root/spark-2.1.0-bin-hadoop2.7
+source ~/.bashrc -->
+
+rm /usr/local/rvm/gems/ruby-2.4.0@spark-poc/gems/ruby-spark-1.2.1/ext/spark/sbt/sbt-launch-0.13.9.jar
+ruby-spark build
+
+http://www.rubydoc.info/github/ondra-m/ruby-spark/Spark/Mllib
+
+
+# NaiveBayes, renew/non-renew predictions, start with weather example below
+https://spark.apache.org/docs/latest/ml-classification-regression.html
+https://github.com/apache/spark/blob/master/data/mllib/sample_libsvm_data.txt # often used in examples
+http://www.rubydoc.info/github/ondra-m/ruby-spark/Spark/Mllib/NaiveBayes 
+http://shatterline.com/blog/2013/09/12/not-so-naive-classification-with-the-naive-bayes-classifier/
+
+# Spark NLP
+
 ```
