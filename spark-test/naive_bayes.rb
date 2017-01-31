@@ -45,10 +45,26 @@ sym_to_v = {
 
 data = []
 
-measures.each do |m|
-  data << LabeledPoint.new(sym_to_v[m[4]], [sym_to_v[m[0]], sym_to_v[m[1]], sym_to_v[m[2]], sym_to_v[m[3]]])
+measures[4..13].each do |m|
+  data << LabeledPoint.new(sym_to_v[m[4]], [ sym_to_v[m[0]], sym_to_v[m[1]], sym_to_v[m[2]], sym_to_v[m[3]] ])
 end
 
 model = NaiveBayes.train(sc.parallelize(data))
-model.predict([sym_to_v[:sunny], sym_to_v[:mild], sym_to_v[:normal], sym_to_v[:weak]]) # go play
-model.predict([sym_to_v[:rain], sym_to_v[:cool], sym_to_v[:normal], sym_to_v[:strong]]) # don't play
+
+# My personal assumptions
+model.predict([sym_to_v[:sunny], sym_to_v[:mild], sym_to_v[:normal], sym_to_v[:weak]]) # should return 1, go play
+model.predict([sym_to_v[:rain], sym_to_v[:cool], sym_to_v[:normal], sym_to_v[:strong]]) # should return 0, don't play
+
+# Automatic test
+measures[0..3].each do |m|
+  v = [ sym_to_v[m[0]], sym_to_v[m[1]], sym_to_v[m[2]], sym_to_v[m[3]] ]
+  puts "vector: #{v.join(', ')}"
+  prediction =  model.predict(v)
+  puts "prediction: #{prediction}"
+  if prediction == sym_to_v[m[4]]
+    puts "Matched!"
+  else
+    puts "Didn't match :-(" 
+  end
+  puts
+end
